@@ -15,8 +15,8 @@ public class futureValueCalculator {
 
         getInformation(); // will collect information from the user
         calculateFutureValue(); // this will do the calculation
-        totalInterestCalc();
-        displayInformation();
+        totalInterestCalc(); // This will give total interest
+        displayInformation(); // this will display the summary
 
     }
 
@@ -40,8 +40,7 @@ public class futureValueCalculator {
         int daysPerYear = 365;
         int totalDays = years * daysPerYear;
 
-        futureValue = principal *
-                Math.pow(1 + (annualInterest / daysPerYear), totalDays);
+        futureValue = principal * Math.pow(1 + (annualInterest / daysPerYear), totalDays);
 
     }
 

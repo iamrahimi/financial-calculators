@@ -1,5 +1,4 @@
 package com.pluralsight;
-
 import java.util.Scanner;
 
 public class MortgageCalculator {
@@ -13,8 +12,8 @@ public class MortgageCalculator {
         System.out.println("Welcome to the Mortgage Calculator");
         getInformation(); // will collect information from the user
         colculateMontlyPayments(); // this will do the calculation
-        totalInterestColc();
-        displayInformation();
+        totalInterestColc(); // This will give total interest
+        displayInformation(); // this will display the summary
 
     }
 
@@ -39,9 +38,8 @@ public class MortgageCalculator {
             return principal / months;
         }
 
-        double power = Math.pow(1 + monthlyInterestRate, months);
-        double monthlyPayment =
-                (principal * monthlyInterestRate * power) / (power - 1);
+        double n = Math.pow(1 + monthlyInterestRate, months);
+        double monthlyPayment = (principal * monthlyInterestRate * n) / (n - 1);
 
         return monthlyPayment;
     }
