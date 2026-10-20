@@ -1,32 +1,39 @@
+
 package com.pluralsight.workbook2;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class AddressBuilderGui {
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> openGUI());
     }
 
     public static void openGUI() {
+
         JFrame frame = new JFrame("Address Builder");
-        frame.setSize(600, 950);
+        frame.setSize(650, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 2, 10, 10));
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 25, 20, 25));
+        // Main panel
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 15));
+        mainPanel.setBorder(
+                BorderFactory.createEmptyBorder(20, 25, 20, 25)
+        );
+
+        // Input form panel
+        JPanel panel = new JPanel(new GridLayout(0, 2, 10, 10));
 
         JLabel titleLabel = new JLabel("Address Builder");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         JLabel nameLabel = new JLabel("Customer Name:");
         JTextField nameField = new JTextField();
 
         JLabel billingTitle = new JLabel("Billing Address");
-        billingTitle.setFont(new Font("Arial", Font.BOLD, 16));
+        billingTitle.setFont(new Font("Arial", Font.BOLD, 17));
 
         JLabel billingStreetLabel = new JLabel("Billing Street:");
         JTextField billingStreetField = new JTextField();
@@ -41,7 +48,7 @@ public class AddressBuilderGui {
         JTextField billingZipField = new JTextField();
 
         JLabel shippingTitle = new JLabel("Shipping Address");
-        shippingTitle.setFont(new Font("Arial", Font.BOLD, 16));
+        shippingTitle.setFont(new Font("Arial", Font.BOLD, 17));
 
         JLabel shippingStreetLabel = new JLabel("Shipping Street:");
         JTextField shippingStreetField = new JTextField();
@@ -58,10 +65,7 @@ public class AddressBuilderGui {
         JButton submitButton = new JButton("Build Address");
         JButton clearButton = new JButton("Clear");
 
-        JTextArea resultArea = new JTextArea(8, 30);
-        resultArea.setEditable(false);
-        resultArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
-
+        // Add components to input panel
         panel.add(titleLabel);
         panel.add(new JLabel(""));
 
@@ -101,58 +105,92 @@ public class AddressBuilderGui {
         panel.add(submitButton);
         panel.add(clearButton);
 
-        panel.add(new JLabel("Customer Details:"));
-        panel.add(new JLabel(""));
+        // Customer details heading
+        JLabel customerDetailsLabel =
+                new JLabel("Customer Details");
 
-        panel.add(new JScrollPane(resultArea));
-        panel.add(new JLabel(""));
+        customerDetailsLabel.setFont(
+                new Font("Arial", Font.BOLD, 20)
+        );
 
+        // Customer details output area
+        JTextArea resultArea = new JTextArea(10, 30);
+        resultArea.setEditable(false);
+        resultArea.setFont(
+                new Font("Arial", Font.PLAIN, 17)
+        );
+        resultArea.setMargin(new Insets(15, 15, 15, 15));
+        resultArea.setLineWrap(true);
+        resultArea.setWrapStyleWord(true);
+
+        resultArea.setText(
+                "Your customer details will appear here."
+        );
+
+        JScrollPane scrollPane = new JScrollPane(resultArea);
+        scrollPane.setPreferredSize(new Dimension(550, 220));
+
+        // Output panel
+        JPanel outputPanel = new JPanel(new BorderLayout(5, 10));
+        outputPanel.add(customerDetailsLabel, BorderLayout.NORTH);
+        outputPanel.add(scrollPane, BorderLayout.CENTER);
+
+        // Build Address button
         submitButton.addActionListener(e -> {
+
             String name = nameField.getText().trim();
 
-            StringBuilder billingAddressBuilder = new StringBuilder();
-            billingAddressBuilder.append(
-                    billingStreetField.getText().trim() + "\n"
-            );
-            billingAddressBuilder.append(
-                    billingCityField.getText().trim() + ", "
-            );
-            billingAddressBuilder.append(
-                    billingStateField.getText().trim() + " "
-            );
-            billingAddressBuilder.append(
-                    billingZipField.getText().trim()
-            );
+            String billingStreet =
+                    billingStreetField.getText().trim();
+            String billingCity =
+                    billingCityField.getText().trim();
+            String billingState =
+                    billingStateField.getText().trim();
+            String billingZip =
+                    billingZipField.getText().trim();
 
-            StringBuilder shippingAddressBuilder = new StringBuilder();
-            shippingAddressBuilder.append(
-                    shippingStreetField.getText().trim() + "\n"
-            );
-            shippingAddressBuilder.append(
-                    shippingCityField.getText().trim() + ", "
-            );
-            shippingAddressBuilder.append(
-                    shippingStateField.getText().trim() + " "
-            );
-            shippingAddressBuilder.append(
-                    shippingZipField.getText().trim()
-            );
+            String shippingStreet =
+                    shippingStreetField.getText().trim();
+            String shippingCity =
+                    shippingCityField.getText().trim();
+            String shippingState =
+                    shippingStateField.getText().trim();
+            String shippingZip =
+                    shippingZipField.getText().trim();
 
-            String billingString = billingAddressBuilder.toString();
-            String shippingString = shippingAddressBuilder.toString();
+            String billingAddress =
+                    billingStreet + "\n"
+                            + billingCity + ", "
+                            + billingState + " "
+                            + billingZip;
 
-            resultArea.setText(
-                    "========================================\n"
+            String shippingAddress =
+                    shippingStreet + "\n"
+                            + shippingCity + ", "
+                            + shippingState + " "
+                            + shippingZip;
+
+            String customerDetails =
+                    "====================================\n"
                             + "           CUSTOMER DETAILS\n"
-                            + "========================================\n\n"
-                            + "Customer Name:\n  " + name + "\n\n"
-                            + "Billing Address:\n" + billingString + "\n\n"
-                            + "Shipping Address:\n" + shippingString + "\n\n"
-                            + "========================================"
-            );
+                            + "====================================\n\n"
+                            + "Customer Name:\n"
+                            + name + "\n\n"
+                            + "BILLING ADDRESS\n"
+                            + "------------------------------------\n"
+                            + billingAddress + "\n\n"
+                            + "SHIPPING ADDRESS\n"
+                            + "------------------------------------\n"
+                            + shippingAddress + "\n"
+                            + "====================================";
+
+            resultArea.setText(customerDetails);
+            resultArea.setCaretPosition(0);
         });
 
+        // Clear button
         clearButton.addActionListener(e -> {
+
             nameField.setText("");
 
             billingStreetField.setText("");
@@ -165,11 +203,17 @@ public class AddressBuilderGui {
             shippingStateField.setText("");
             shippingZipField.setText("");
 
-            resultArea.setText("");
+            resultArea.setText(
+                    "Your customer details will appear here."
+            );
         });
 
-        frame.add(panel);
+        // Add panels to main panel
+        mainPanel.add(panel, BorderLayout.NORTH);
+        mainPanel.add(outputPanel, BorderLayout.CENTER);
+
+        // Display window
+        frame.add(mainPanel);
         frame.setVisible(true);
     }
 }
-
