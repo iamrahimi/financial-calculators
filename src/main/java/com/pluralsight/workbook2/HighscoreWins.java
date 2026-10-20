@@ -39,12 +39,18 @@ public class HighscoreWins {
                         System.out.println("Score: " + scores[0]);
                         System.out.println("====================");
 
-                    }else {
+                    } else if (Integer.parseInt(scores[0]) < Integer.parseInt(scores[1])) {
                         System.out.println("====================");
                         System.out.println("   GAME RESULTS");
                         System.out.println("====================");
                         System.out.println("Winner: " + teams[1]);
                         System.out.println("Score: " + scores[1]);
+                        System.out.println("====================");
+                    }else {
+                        System.out.println("====================");
+                        System.out.println("   GAME RESULTS");
+                        System.out.println("====================");
+                        System.out.println("Winner: Tied" );
                         System.out.println("====================");
                     }
                 }
