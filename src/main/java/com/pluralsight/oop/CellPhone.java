@@ -6,6 +6,7 @@ public class CellPhone {
     private String carrier;
     private String phoneNumber;
     private String owner;
+    private String dialPhoneNumber;
 
     public CellPhone() {
         this.serialNumber = "";
@@ -22,6 +23,19 @@ public class CellPhone {
         this.carrier = carrier;
         this.phoneNumber = phoneNumber;
         this.owner = owner;
+    }
+
+    public String dial(String phoneNumber) {
+
+        return this.owner+ "'s phone is calling " + phoneNumber;
+    }
+
+    public String getDialPhoneNumber() {
+        return dialPhoneNumber;
+    }
+
+    public void setDialPhoneNumber(String dialPhoneNumber) {
+        this.dialPhoneNumber = dialPhoneNumber;
     }
 
     public String getSerialNumber() {
