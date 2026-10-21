@@ -8,11 +8,15 @@ public class CellPhoneApplication {
     public static CellPhone cellPhone2 = new CellPhone();
 
     public static void main(String[] args) {
+
         System.out.println("Welcome to Cell Phone Application");
         cellPhone = inputData();
         cellPhone2 = inputData();
+        CellPhone cp3 = new CellPhone("20023-123", "iPhone 17 pro", "AT&T", "204-023-02932", "John Smith");
+        cp3.setDialPhoneNumber("200-0920-0293");
         display(cellPhone2);
         display(cellPhone);
+        display(cp3);
     }
 
     public static CellPhone inputData(){

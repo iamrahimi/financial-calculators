@@ -17,7 +17,7 @@ public class CellPhone {
 
     }
 
-    public CellPhone(String serialNumber, String model, String carrier, String phoneNumber, String owner) {
+    public CellPhone(String serialNumber, String model, String carrier, String phoneNumber, String owner ) {
         this.serialNumber = serialNumber;
         this.model = model;
         this.carrier = carrier;
